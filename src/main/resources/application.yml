@@ -1,0 +1,50 @@
+# src/main/resources/application.yml
+spring:
+  application:
+    name: indoor-wayfinding
+  profiles:
+    active: dev
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: Asia/Kolkata        # ← ADD THIS
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when-authorized
+  metrics:
+    tags:
+      application: indoor-wayfinding
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:Y2hhbmdlLW1lLWluLXByb2QtdGhpcy1pcy1hLXNlY3JldC1rZXktZm9yLWp3dA==}
+    expiration-ms: 86400000
+  cache:
+    ttl-minutes: 5
+    max-size: 1000
+
+logging:
+  level:
+    com.lpu.wayfinding: INFO
+    org.springframework.security: WARN

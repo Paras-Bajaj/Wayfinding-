@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/wayfinding?options=-c%20TimeZone%3DAsia/Kolkata
+    username: wayfinding
+    password: wayfinding
+    driver-class-name: org.postgresql.Driver
+
+logging:
+  level:
+    com.lpu.wayfinding: DEBUG
